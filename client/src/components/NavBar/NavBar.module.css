@@ -1,0 +1,117 @@
+.NavbarHome {
+  top: 0;
+  position: fixed;
+  width: 100%;
+  padding-left: 2vh;
+  padding-right: 2vh;
+  padding-top: 2vh;
+  background-color: #31b189;
+  height: 12vh;
+}
+
+.NavbarHomeContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.NavbarHomeLogo {
+  width: 25vh;
+  margin: 0;
+}
+
+.NavBarLinks{
+  font-size: 16px;
+  color: #ffe3b3;
+  text-decoration: none;
+}
+.NavBarLinks:hover{
+  font-size: 16px;
+  color: white;
+  text-decoration: none;
+}
+.CartIcon {
+  margin-top: 10px;
+  margin-right: -60px;
+  padding-left: 6px;
+  display: flex;
+  width: 40px;
+}
+.ProfileFav {
+  margin-top: 18px;
+  margin-right: -20px;
+  padding-left: 4px;
+  display: flex;
+  margin-right: 40px;
+  width: 40px;
+}
+
+.FavIcon {
+  display: flex;
+  margin-top: 12px;
+  padding-left: 8px;
+  width: 40px;
+}
+
+.NavbarHomeFormsButtonsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 40vh;
+}
+
+.NavbarHomeButtons {
+  display: inline-block;
+  padding: 6px 11px;
+  border: 1px solid #ffe3b3;
+  border-radius: 10px;
+  position: relative;
+  font-size: 19px;
+  color: black;
+  z-index: 1;
+  background-color: #ffe3b3;
+  text-align: center;
+  transition: all 0.2s ease-in;
+}
+.NavbarHomeButtons2 {
+  display: flex;
+  margin-top: 10px;
+  padding: 0px 10px;
+  border: 1px solid #ffe3b3;
+  border-radius: 10px;
+  font-size: 10px;
+  color: black;
+  z-index: 1;
+  background-color: #ffe3b3;
+  text-align: center;
+  transition: all 0.2s ease-in;
+}
+
+.NavbarHomeButtons:hover {
+  color: #31b189;
+  border: 1px solid white;
+}
+.NavBarText {
+  margin-top: -30px;
+}
+
+.Session {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Username {
+  text-align: center;
+  font-size: larger;
+  text-decoration: double;
+  color: #ffe3b3;
+}
+
+.toast {
+  font-size: large;
+  border-radius: 10px;
+  color: #31b189;
+}

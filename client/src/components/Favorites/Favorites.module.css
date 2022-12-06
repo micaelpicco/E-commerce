@@ -1,0 +1,71 @@
+.Container__Fav {
+  width: 100%;
+  margin-top: 5.7%;
+  background-color: white;
+}
+
+.containerFavorites {
+  padding: 1%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  /*  overflow-y: scroll; */
+}
+
+.FavCards {
+  max-height: 75vh;
+  min-height: 75vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: #a8a8a867;
+  border-radius: 25px;
+  overflow-y: scroll;
+}
+
+.textFav {
+  margin-top: 13%;
+  text-align: center;
+  width: 100%;
+  color: #31b189;
+  font-size: xx-large;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.FavLink {
+  width: 15%;
+  border-radius: 5px;
+  border: 5px solid #ffe3b3;
+  background-color: #ffe3b3;
+  color: white;
+  transition: 0.5s;
+  margin-top: 1%;
+  text-decoration: none;
+  padding: 0.5%;
+}
+
+.FavLink:hover {
+  background-color: #ffe3b3;
+  border: 5px solid #31b189;
+  text-decoration: none;
+  color: #31b189;
+}
+
+.CleanButtons {
+  font-size: small;
+  border-radius: 5px;
+  border: 5px solid #31b189;
+  background-color: #31b189;
+  color: white;
+  transition: 0.5s;
+  margin-right: 0.5%;
+}
+
+.CleanButtons:hover {
+  background-color: #328a6e;
+  border: 5px solid #328a6e;
+}

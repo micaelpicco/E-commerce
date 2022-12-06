@@ -1,0 +1,79 @@
+.containerShopping {
+  margin: 4%;
+  margin-top: 8%;
+  border-radius: 25px;
+  padding: 1%;
+  background-color: rgba(145, 145, 145, 0.349);
+  text-align: center;
+  min-height: 75vh;
+}
+.ProductContainer {
+  padding: 5%;
+  min-height: 100vh;
+  background-color: #ffe3b3;
+}
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #31b189;
+}
+.NavbarHomeLogo {
+  width: 60vh;
+  padding-top: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-left: 32%;
+}
+
+.NoCart {
+  margin-top: 10%;
+  font-size: x-large;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.CartLink {
+  width: 15%;
+  border-radius: 5px;
+  border: 5px solid #ffe3b3;
+  background-color: #ffe3b3;
+  color: white;
+  transition: 0.5s;
+  margin-top: 1%;
+  text-decoration: none;
+  padding: 0.5%;
+}
+
+.CartLink:hover {
+  background-color: #ffe3b3;
+  border: 5px solid #31b189;
+  text-decoration: none;
+  color: #31b189;
+}
+
+.CartBox {
+  display: flex;
+  overflow-x: scroll;
+}
+
+.CleanCartButtons {
+  font-size: small;
+  border-radius: 5px;
+  border: 5px solid #31b189;
+  background-color: #31b189;
+  color: white;
+  margin-left: 0.1%;
+  margin-right: 0.1%;
+  transition: 0.5s;
+}
+
+.CleanCartButtons:hover {
+  background-color: #328a6e;
+  border: 5px solid #328a6e;
+}

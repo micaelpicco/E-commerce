@@ -1,0 +1,19 @@
+.FilterProductsHome {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0.5%;
+    margin-top: 0.5%;
+    height: 5vh;
+}
+
+.FilterProductsHomeSelect {
+    height: 100%;
+    margin-left: 2%;
+    background-color: white;
+    border: 1px solid #31B189;
+    border-radius: 5px;
+}
+
+.FilterProductsHomeSelect:hover {
+    cursor: pointer;
+}

@@ -1,0 +1,11 @@
+.SellProductsTittle {
+    font-size: xx-large;
+    text-align: center;
+}
+
+.NoData {
+    display: flex;
+    font-size: x-large;
+    text-align: center;
+    justify-content: center;
+}

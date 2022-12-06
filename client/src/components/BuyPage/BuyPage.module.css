@@ -1,0 +1,22 @@
+.BuyPage {
+    width: 85%;
+    height: 100%;
+    border-radius: 25px;
+    background-color: white;
+    padding: 1% 2%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0.3em 0.3em 0.7em #00000021;
+}
+
+.BuyPageTittle {
+    font-size: xx-large;
+    text-align: center;
+}
+
+.NoData {
+    display: flex;
+    font-size: x-large;
+    text-align: center;
+    justify-content: center;
+}

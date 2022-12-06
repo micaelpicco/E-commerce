@@ -1,0 +1,46 @@
+.CardProductHome {
+    width: 180px;
+    height: 260px;
+    padding: 1%;
+    background: #FFE3B3;
+    border-radius: 0.4em;
+    box-shadow: 0.3em 0.3em 0.7em #00000015;
+    transition: border 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: rgb(250, 250, 250) 0.2em solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    text-align: center;
+    margin: 1%;
+}
+
+.CardProductHome:hover {
+    border: #31B189 0.2em solid;
+}
+
+.CardProductHomeLink {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.CardProductHomeLink:visited {
+    color: inherit
+}
+  
+.CardProductHomeLink:link { 
+    text-decoration: none; 
+}
+
+.CardProductHomeLinkProductImg {
+    width: 120px;
+    height: auto;
+    margin: 0;
+}
+
+.CardProductHomeLinkProductTextContainer {
+    color: #31B189;
+}
