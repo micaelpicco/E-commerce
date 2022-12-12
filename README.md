@@ -55,3 +55,7 @@ PostgreSQL
 # Project Deploy
 
 Link: https://express-clothes.vercel.app/
+
+You can enter with the following moderator user and see the control that he has
+- User: lmacchi
+- Password: 123456
