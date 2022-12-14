@@ -4,6 +4,9 @@
     <img src='https://static.wixstatic.com/media/85087f_0d84cbeaeb824fca8f7ff18d7c9eaafd~mv2.png/v1/fill/w_160,h_30,al_c,q_85,usm_0.66_1.00_0.01/Logo_completo_Color_1PNG.webp' </img>
 </p>
 
+  <img src="https://github.com/micaelpicco/E-commerce/blob/main/client/src/components/images/bitmap2.png?raw=true" width=300 align="center"
+ />
+
 # Introduction
 Second and last group project of the bootcamp "Soy Henry" with a duration of 4 weeks that aimed to make an e-commerce of all kinds of clothing. The application offered the possibility to buy products from different stores, as well as to create your own store and sell products.
 
