@@ -10,11 +10,13 @@ import { demographic, colorsList, sizesList } from "./index.js";
 const EditProduct = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const [colors, setColor] = useState("");
   const [sizes, setSize] = useState("");
 
   const token = validateUser();
   const { id } = useParams();
+
   useEffect(() => {
     dispatch(getProductDetail(id));
   }, [dispatch, id]);
@@ -72,10 +74,8 @@ const EditProduct = () => {
             demographic,
             variants,
           };
-          console.log(a);
 
           dispatch(modifyProduct(token, a)).then(function (res) {
-            console.log(res);
             alert("Exitoso");
           });
           setTimeout(() => {
@@ -200,20 +200,7 @@ const EditProduct = () => {
                       </option>
                     ))}
                   </select>
-                  {/*   <div className="select-option">
-                  {sizes?.map((d) => (
-                    <div key={d} className="div-delete">
-                      <p>{d}</p>
-                      <button
-                        className="btn-delete"
-                        name="size"
-                        onClick={() => handleDelete(d)}
-                      >
-                        X
-                      </button>
-                    </div>
-                  ))}
-                </div> */}
+
                   <select
                     name="color"
                     className={Styles.FilterProductsSelect}
@@ -234,20 +221,6 @@ const EditProduct = () => {
                       </option>
                     ))}
                   </select>
-                  {/*  <div className="select-option">
-                  {colors?.map((e) => (
-                    <div key={e} className="div-delete">
-                      <p>{e}</p>
-                      <button
-                        className="btn-delete"
-                        name="size"
-                        onClick={() => handleDeleteColor(e)}
-                      >
-                        X
-                      </button>
-                    </div>
-                  ))}
-                </div> */}
                 </div>
                 <div>
                   {!values.name ||

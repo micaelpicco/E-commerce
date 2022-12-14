@@ -9,6 +9,7 @@ import Styles from "./CreateUser.module.css";
 const CreateUser = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const toast = (text) =>
     Toastify({
       text: text,
@@ -97,18 +98,14 @@ const CreateUser = () => {
             profilePicture,
             location,
           };
-          console.log(a);
 
           dispatch(createUser(a))
             .then(function (res) {
-              console.log(res);
               toast(`Usuario creado con éxito,
               por favor verificar tu cuenta con el
               mensaje enviado en tu correo electronico`);
             })
-            .catch(function (res) {
-              console.log(res);
-            });
+            .catch(function (res) {});
           setTimeout(() => {
             resetForm();
             navigate("/login");

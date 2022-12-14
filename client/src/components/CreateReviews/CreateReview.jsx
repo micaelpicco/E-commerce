@@ -2,17 +2,19 @@ import Rating from "@mui/material/Rating";
 import { useEffect, useState, useRef } from "react";
 import Styles from "./CreateReview.module.css";
 import { createReviewProduct } from "../../redux/actions";
-import { getSession, validateUser } from "../../sessionUtils/jwtSession";
+import { validateUser } from "../../sessionUtils/jwtSession";
 import { useDispatch } from "react-redux";
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
 
 const CreateReview = ({ id }) => {
+  const dispatch = useDispatch();
+  const textbox = useRef();
+
   const [rating, setRating] = useState({ value: null, text: "" });
   const [info, setInfo] = useState("");
   const [error, setError] = useState("");
-  const dispatch = useDispatch();
-  const textbox = useRef();
+
   const toast = (text, color = "#32CD32") =>
     Toastify({
       text: text,

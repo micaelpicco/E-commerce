@@ -22,7 +22,6 @@ const SellingProducts = () => {
           }/user/onSell/${user}`
         )
         .then((res) => {
-          console.log(res);
           setProducts(res.data);
         });
     })();
@@ -45,7 +44,9 @@ const SellingProducts = () => {
           />
         ))
       ) : (
-        <label className={Styles.NoData}>Aun no tienes productos en venta.</label>
+        <label className={Styles.NoData}>
+          Aun no tienes productos en venta.
+        </label>
       )}
     </div>
   );

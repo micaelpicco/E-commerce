@@ -27,8 +27,13 @@ import { validateUser } from "../../sessionUtils/jwtSession";
 const ProductDetail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-
   const navigate = useNavigate();
+
+  const [load, setLoading] = useState(false);
+  const [user, setUser] = useState(null);
+  const [filterBySize, setFilterBySize] = useState("");
+  const [filterByColor, setFilterByColor] = useState("");
+
   const toast = (text, color = "#32CD32") =>
     Toastify({
       text: text,
@@ -41,14 +46,8 @@ const ProductDetail = () => {
   const detail = useSelector((state) => state.productDetail);
   const reviews = useSelector((state) => state.productReviews);
   const favorites = useSelector((state) => state.favorites);
-  const historial = useSelector((state) =>
-    state?.historial.filter((el) => el.pagado === true)
-  );
-  const [load, setLoading] = useState(false);
-  //const historial = useSelector((state) => state?.historial);
+  const historial = useSelector((state) => state?.historial);
   const results = useSelector((state) => state.Status);
-
-  console.log(historial);
 
   const averageScore = () => {
     let average = 0;
@@ -61,10 +60,6 @@ const ProductDetail = () => {
       return 0;
     }
   };
-
-  const [user, setUser] = useState(null);
-  const [filterBySize, setFilterBySize] = useState("");
-  const [filterByColor, setFilterByColor] = useState("");
 
   useEffect(() => {
     (async () => {

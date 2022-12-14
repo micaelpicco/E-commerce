@@ -12,8 +12,6 @@ const Filters = () => {
   const [color, setColor] = useState("");
   const [name, setName] = useState("");
 
-  //const [cant, setCant] = useState("");
-
   useEffect(() => {
     dispatch(filterProducts(name, price, size, demographic, color));
   }, [dispatch, name, price, size, demographic, color]);

@@ -21,13 +21,7 @@ const BuyPage = () => {
     dispatch(buyHistorial(user));
   }, [user, dispatch]);
 
-  const historial = useSelector((state) =>
-    state?.historial.filter((el) => el.pagado === true)
-  );
-
-  //const historial = useSelector((state) => state?.historial);
-
-  console.log(historial);
+  const historial = useSelector((state) => state?.historial);
 
   var repetidos = {};
 

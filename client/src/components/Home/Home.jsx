@@ -14,7 +14,7 @@ import { useLocalStorage } from "../../Utils/useLocalStorage";
 export default function Home() {
   const dispatch = useDispatch();
   const search = useLocation().search;
-  const gtoken = new URLSearchParams(search).get('gtoken');
+  const gtoken = new URLSearchParams(search).get("gtoken");
 
   const [price, setPrice] = useLocalStorage("price", "");
   const [size, setSize] = useLocalStorage("size", "");
@@ -27,8 +27,8 @@ export default function Home() {
   const [user, setUser] = useState("");
 
   useEffect(() => {
-    if(gtoken){
-     setSession(gtoken); 
+    if (gtoken) {
+      setSession(gtoken);
     }
     dispatch(
       filterProducts(
@@ -159,22 +159,6 @@ export default function Home() {
     setPage(page + 10);
   };
 
-  //PAGINATED
-  // const start = (e) => {
-  //   e.preventDefault();
-  //   setCant(0);
-  // };
-
-  // const prev = (e) => {
-  //   e.preventDefault();
-  //   setCant(cant - 1);
-  // };
-
-  // const next = (e) => {
-  //   e.preventDefault();
-  //   setCant(cant + 1);
-  // };
-
   return (
     <div className={Styles.Home}>
       <NavBar />
@@ -245,9 +229,14 @@ export default function Home() {
               placeholder="Buscar productos..."
               onChange={(e) => filterByName(e)}
             />
-            {/* <Orders setOrder={setOrder} /> */}
             <label className={Styles.OrderBy}> ORDENAR POR:</label>
-            <select id={Styles.OrderBySelect} className={Styles.FilterProductsHomeSelect} name="sort" value={sortBy} onChange={(e) => changeSort(e)}>
+            <select
+              id={Styles.OrderBySelect}
+              className={Styles.FilterProductsHomeSelect}
+              name="sort"
+              value={sortBy}
+              onChange={(e) => changeSort(e)}
+            >
               <option value="name">Nombre</option>
               <option value="price">Precio</option>
             </select>

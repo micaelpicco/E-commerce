@@ -3,20 +3,22 @@ import { createProduct } from "../../redux/actions";
 import { Formik } from "formik";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Styles from "./CreateProduct.module.css";
 import { validateUser } from "../../sessionUtils/jwtSession";
 import { getUserData } from "../../Utils/useLocalStorage";
 import { demographic, colorsList, sizesList } from "./index.js";
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
+import Styles from "./CreateProduct.module.css";
 
 const CreateStore = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const [user, setUser] = useState("");
   const [productImage, setProductImage] = useState("");
   const [colors, setColor] = useState("");
   const [sizes, setSize] = useState("");
+
   const toast = (text) =>
     Toastify({
       text: text,
@@ -47,13 +49,7 @@ const CreateStore = () => {
   const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
 
   const imageRef = useRef(null);
-  console.log(productImage.split(";")[0]);
-  console.log(productImage.split(";")[0].split(":")[1]);
-  console.log(productImage.split(";")[0].split("/")[1]);
-
-  console.log(
-    SUPPORTED_FORMATS.includes(productImage.split(";")[0].split(":")[1])
-  );
+  
   return (
     <div className={Styles.container1}>
       <button className={Styles.BackButtons} onClick={() => navigate(-1)}>
@@ -72,7 +68,6 @@ const CreateStore = () => {
           color: "",
         }}
         validate={(value) => {
-          console.log(value);
           let errors = {};
           if (!value.name) {
             errors.name = "Ingrese un nombre al producto";
@@ -87,7 +82,6 @@ const CreateStore = () => {
           }
           return errors;
         }}
-        //validationSchema={createSchema}
         onSubmit={(data, { resetForm }) => {
           let { id, name, demographic, price, stock } = data;
           id = user;
@@ -107,10 +101,8 @@ const CreateStore = () => {
             demographic,
             variants,
           };
-          console.log(a);
 
           dispatch(createProduct(token, a)).then(function (res) {
-            console.log(res);
             toast("Producto creado exitosamente");
           });
           setTimeout(() => {
@@ -272,20 +264,7 @@ const CreateStore = () => {
                       </option>
                     ))}
                   </select>
-                  {/*   <div className="select-option">
-                  {sizes?.map((d) => (
-                    <div key={d} className="div-delete">
-                      <p>{d}</p>
-                      <button
-                        className="btn-delete"
-                        name="size"
-                        onClick={() => handleDelete(d)}
-                      >
-                        X
-                      </button>
-                    </div>
-                  ))}
-                </div> */}
+
                   <select
                     name="color"
                     id={Styles.FilterProductsSelectColor}
@@ -308,20 +287,7 @@ const CreateStore = () => {
                     ))}
                   </select>
                 </div>
-                {/*  <div className="select-option">
-                  {colors?.map((e) => (
-                    <div key={e} className="div-delete">
-                      <p>{e}</p>
-                      <button
-                        className="btn-delete"
-                        name="size"
-                        onClick={() => handleDeleteColor(e)}
-                      >
-                        X
-                      </button>
-                    </div>
-                  ))}
-                </div> */}
+
                 <div>
                   {!values.name ||
                   !values.price ||

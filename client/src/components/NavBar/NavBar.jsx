@@ -10,11 +10,12 @@ import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
 import axios from "axios";
 import { useLocalStorage } from "../../Utils/useLocalStorage";
-//import { FaWindows } from "react-icons/fa";
 
 const NavBar = () => {
-  const [user, setUser] = useLocalStorage("userData");
   const navigate = useNavigate();
+
+  const [user, setUser] = useLocalStorage("userData");
+
   const toast = (text) =>
     Toastify({
       text: text,
@@ -59,9 +60,7 @@ const NavBar = () => {
         <Link to="/">
           <img className={Styles.NavbarHomeLogo} src={Logo} alt="logo" />
         </Link>
-        {/* si el usuario no esta logueado mostrar login y signup
-                en caso contrario mostrar el usuario logueado y boton de 
-            cerrar sesion */}
+
         {!user ? (
           <div className={Styles.NavbarHomeFormsButtonsContainer}>
             <Link to="/login">
@@ -75,7 +74,9 @@ const NavBar = () => {
           </div>
         ) : (
           <>
-            <Link className={Styles.NavBarLinks} to="/home">Inicio</Link>
+            <Link className={Styles.NavBarLinks} to="/home">
+              Inicio
+            </Link>
             <Link to="/home/ShoppingCart">
               <img
                 className={Styles.CartIcon}
@@ -97,11 +98,8 @@ const NavBar = () => {
                 alt="img not found"
               ></img>
             </Link>
-            {/* <Link className={Styles.NavBarLinks} to="/home/stadistics">Estadísticas</Link> */}
 
             <div className={Styles.Session}>
-
-              {/* username */}
               <label className={Styles.Username}>{user?.username}</label>
               <button
                 className={Styles.NavbarHomeButtons2}

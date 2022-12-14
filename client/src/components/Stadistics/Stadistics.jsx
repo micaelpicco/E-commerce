@@ -6,14 +6,11 @@ import {
 import { getUserData } from "../../Utils/useLocalStorage.js";
 import { validateUser } from "../../sessionUtils/jwtSession.js";
 import { useDispatch, useSelector } from "react-redux";
-//import { useNavigate } from "react-router-dom";
-import NavBar from "../NavBar/NavBar.jsx";
 import SellsGraphic from "../SellsGraphic/SellsGraphic.jsx";
 import Styles from "./Stadistics.module.css";
 
 const Stadistics = () => {
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
   const [user, setUser] = useState("");
 
   useEffect(() => {
@@ -25,17 +22,14 @@ const Stadistics = () => {
     })();
     const token = validateUser();
     const id = user;
-    console.log(token);
-    console.log(id);
     if (user !== null) {
       dispatch(getSellsHistoryStadistics(id));
     }
     dispatch(getProducts());
   }, [dispatch, user]);
 
+  const historial = useSelector((state) => state?.sellsHistory);
   const sellsHistory = useSelector((state) => state.sellsStadistics);
-  console.log(sellsHistory);
-  const products = useSelector((state) => state.products);
 
   const listNumbers = (num) => {
     let numbers = [];
@@ -86,14 +80,9 @@ const Stadistics = () => {
     return sellsDays;
   };
 
-  /* const randomSells = () => {
-        let randomSell = Math.floor(Math.random() * 10)
-        return randomSell
-    } */
-
   const sellsInProcess = () => {
     let auxSells = [];
-    const auxNum = parseInt(daysMonth().pop()); //ultimo día del mes (osea, la cantidad de días)
+    const auxNum = parseInt(daysMonth().pop());
     for (let i = 1; i <= auxNum; i++) {
       auxSells.push("0");
     }
@@ -126,56 +115,30 @@ const Stadistics = () => {
 
   return (
     <div className={Styles.StadisticsComponent}>
-      {/* <button
-             className={Style.backButton} 
-            onClick={() => navigate("/home")}
-          >
-            Atrás
-          </button> */}
-      <h1>Panel de Control</h1>
+      <h1 align="center">Panel de Control</h1>
       <div>
         {sellsHistory.length ? (
           <SellsGraphic days={days} sells={sellsForDays()} />
         ) : (
           <SellsGraphic days={days} sells={sellsInProcess()} />
         )}
-        {sellsHistory.length ? (
-          sellsHistory.map((sell) => {
-            const productInfo = products.find((p) => p.id === sell.productId);
-            return (
-              <div>
-                {/* <img src={productInfo?.image[0]} alt="foto" /> */}
-                <h4>{productInfo?.name}</h4>
-                {/* <p>{sell.buyer || "Nombre del comprador"}</p> */}
-                <p>Talle: {sell?.size}</p>
-                <p>{sell?.location}</p>
-                {/* <Link to={`/sell/${sell.id}`}>
-                                    <p>Más detalles de la compra</p>
-                                </Link> */}
-              </div>
-            );
-          })
-        ) : (
-          <h2>Aquí van a aparecer las ventas que hayas realizado</h2>
-        )}
-        <div>
-          <h2>Productos más vendidos</h2>
-          {mostSelledProducts.length ? (
-            mostSelledProducts.map((s) => {
-              const productInfo = products.find((p) => p.id === s.productId);
-              return (
-                <div>
-                  <h2>{productInfo?.name}</h2>
-                  {/* <img src={productInfo?.image[0]} alt="foto" /> */}
-                  <h2>Vendidos:</h2>
-                  <h2>{s.amount}</h2>
-                </div>
-              );
-            })
-          ) : (
-            <div>Aquí se mostraran tus productos más vendidos</div>
-          )}
-        </div>
+
+        <h2 align="center">Mes actual: {Date()?.split(" ")[1]}</h2>
+        <br></br>
+        <br></br>
+
+        <h2 className={Styles.total} align="center">
+          CANTIDAD TOTAL DE PRODUCTOS VENDIDOS DURANTE EL MES{" "}
+          <h1 className={Styles.cantidad}>{historial.length}</h1>
+          CANTIDAD TOTAL DE DINERO GENERADO DURANTE EL MES{" "}
+          <h1 className={Styles.cantidad}>
+            {" "}
+            {historial.length
+              ? historial?.reduce((arr, el) => arr + el.price, 0)
+              : "0"}
+            $
+          </h1>
+        </h2>
       </div>
     </div>
   );

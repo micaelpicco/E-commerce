@@ -13,6 +13,7 @@ import "toastify-js/src/toastify.css";
 const CreateStore = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const [user, setUser] = useState("");
   const [avatar, setAvatar] = useState("");
   const [profileBanner, setProfileBanner] = useState("");
@@ -37,8 +38,6 @@ const CreateStore = () => {
 
   const token = validateUser();
 
-  console.log(user);
-
   return (
     <div className={Styles.container1}>
       <button className={Styles.BackButtons} onClick={() => navigate(-1)}>
@@ -57,17 +56,7 @@ const CreateStore = () => {
           return errors;
         }}
         onSubmit={(data, { resetForm }) => {
-          //handleSubmit(data);
-          /*let {storeName,location} = data;
-          axios.post(`/user/update?secret_token=${token}`,{
-            id:user,
-            storeName,
-            banner:profileBanner,
-            location,
-            profilePicture : avatar,
-          }).then((res) => {
-            console.log(res);
-          })*/ let { storeName, location } = data;
+          let { storeName, location } = data;
 
           dispatch(
             createStore(token, {
@@ -85,17 +74,13 @@ const CreateStore = () => {
                     process.env.REACT_APP_API || "http://localhost:3001"
                   }/user/get?secret_token=${token}`
                 );
-                console.log(res.data);
                 window.localStorage.setItem(
                   "userData",
                   JSON.stringify(res.data)
                 );
-              } catch (err) {
-                console.log(err.message);
-              }
+              } catch (err) {}
             })
             .then(function (res) {
-              console.log(res);
               toast("Tienda creada exitosamente");
             });
 
@@ -105,14 +90,7 @@ const CreateStore = () => {
           }, 4000);
         }}
       >
-        {({
-          handleSubmit,
-          errors,
-          values,
-          touched,
-          handleChange,
-          handleBlur,
-        }) => (
+        {({ handleSubmit, values, handleChange, handleBlur }) => (
           <form className={Styles.form} onSubmit={handleSubmit}>
             <div className={Styles.entry}>
               <div className={Styles.column}>
@@ -156,7 +134,6 @@ const CreateStore = () => {
                       let avatarData = reader.result;
                       setAvatar(avatarData);
                     };
-                    console.log(avatar);
                   }}
                   onBlur={handleBlur}
                   onKeyUp={handleBlur}
@@ -187,7 +164,6 @@ const CreateStore = () => {
                       let bannerData = reader.result;
                       setProfileBanner(bannerData);
                     };
-                    console.log(profileBanner);
                   }}
                   onBlur={handleBlur}
                   onKeyUp={handleBlur}

@@ -11,6 +11,12 @@ import { getUserData } from "../../Utils/useLocalStorage";
 import Styles from "./EditUser.module.css";
 
 const EditUser = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [currentUserData, setCurrentUser] = useState("");
+  const [user, setUser] = useState("");
+
   const toast = (text) =>
     Toastify({
       text: text,
@@ -19,16 +25,13 @@ const EditUser = () => {
       className: Styles.toast,
       backgroundColor: "#32CD32",
     }).showToast();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [currentUserData, setCurrentUser] = useState("")
-  const [user, setUser] = useState("");
+
   useEffect(() => {
     (async () => {
       if (!user) {
         const data = await getUserData();
         setUser(data?.id);
-        setCurrentUser(data?.name)
+        setCurrentUser(data?.name);
       }
     })();
   }, [user]);
@@ -52,7 +55,7 @@ const EditUser = () => {
         }}
         validate={(value) => {
           let errors = {};
-          if(value.username){
+          if (value.username) {
             if (value.username.length < 6 || value.username.length > 15) {
               errors.username =
                 "Longitud valida desde 6 caracteres hasta 15 caracteres";
@@ -61,43 +64,43 @@ const EditUser = () => {
               alfanumericos y solamente puede contener guiones bajos en le nombre de usuario`;
             }
           }
-          if(value.name){
+          if (value.name) {
             if (!/[A-Za-z]$/.test(value.name)) {
               errors.name = `Nombre invalido,no puede contener numeros`;
+            } else if (!value.lastname) {
+              errors.lastname = "Necesitas un apellido";
             }
-            else if(!value.lastname){
-              errors.lastname = "Necesitas un apellido"
-            } 
           }
-          if(value.lastname){
+          if (value.lastname) {
             if (!/[A-Za-z]$/.test(value.lastname)) {
               errors.lastname = `Apellido invalido,no puede contener numeros`;
+            } else if (!value.name) {
+              errors.name = "Necesitas un nombre";
             }
-            else if(!value.name){
-              errors.name = "Necesitas un nombre"
-            } 
           }
-          if(value.phone){
+          if (value.phone) {
             if (!/^\d[0-9,$]*$/.test(value.phone)) {
               errors.phone = "Ingrese numero de telefono valido";
-            } 
+            }
           }
-          if(value.mail){
+          if (value.mail) {
             if (
-              !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(value.mail)
+              !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(
+                value.mail
+              )
             ) {
               errors.mail = "Ingrese un correo valido";
             }
           }
-           
+
           return errors;
         }}
         onSubmit={(data, { resetForm }) => {
           let { id, name, lastname, mail, phone, username } = data;
           id = user;
-          if(name && lastname) name = `${name} ${lastname}`;
-          else{
-            name = currentUserData
+          if (name && lastname) name = `${name} ${lastname}`;
+          else {
+            name = currentUserData;
           }
           const a = {
             id,
@@ -106,7 +109,6 @@ const EditUser = () => {
             phone,
             username,
           };
-          console.log(a);
 
           dispatch(modifyUser(token, a)).then(async () => {
             try {
@@ -115,7 +117,6 @@ const EditUser = () => {
                   process.env.REACT_APP_API || "http://localhost:3001"
                 }/user/get?secret_token=${token}`
               );
-              console.log(res.data);
               window.localStorage.setItem("userData", JSON.stringify(res.data));
               toast("Exitoso");
             } catch (err) {
@@ -150,7 +151,6 @@ const EditUser = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   onKeyUp={handleBlur}
-                  
                   autoComplete="off"
                 />
                 {touched.username && errors.username && (
@@ -168,7 +168,6 @@ const EditUser = () => {
                   value={values.name}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  
                   autoComplete="off"
                 />
                 {touched.name && errors.name && (
@@ -188,7 +187,6 @@ const EditUser = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   onKeyUp={handleBlur}
-                  
                   autoComplete="off"
                 />
                 {touched.lastname && errors.lastname && (
@@ -206,7 +204,6 @@ const EditUser = () => {
                   value={values.mail}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  
                   autoComplete="off"
                 />
                 {touched.mail && errors.mail && (
@@ -225,7 +222,6 @@ const EditUser = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   onKeyUp={handleBlur}
-                  
                   autoComplete="off"
                 />
                 {touched.phone && errors.phone && (
@@ -235,9 +231,9 @@ const EditUser = () => {
                   </div>
                 )}
                 <div>
-                <button type="submit" className={Styles.submit22}>
-                        Editar usuario 
-                      </button>
+                  <button type="submit" className={Styles.submit22}>
+                    Editar usuario
+                  </button>
                 </div>
               </div>
             </div>

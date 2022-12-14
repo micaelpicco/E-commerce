@@ -15,6 +15,7 @@ import { getUserData } from "../../Utils/useLocalStorage.js";
 
 const Favorites = () => {
   const dispatch = useDispatch();
+
   const [user, setUser] = useState(null);
   const favorites = useSelector((state) => state?.favorites);
 
@@ -29,9 +30,9 @@ const Favorites = () => {
     const token = validateUser();
     dispatch(getFavorites(id, token));
   }, [dispatch, user]);
+
   const profileId = user?.id;
   const token = validateUser();
-  console.log(token);
 
   return (
     <>

@@ -10,10 +10,12 @@ import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
+
   const search = useLocation().search;
   const verified = new URLSearchParams(search).get("google");
+
   const [showPwd, setShowPwd] = useState(false);
-  const navigate = useNavigate();
   const toast = (text) =>
     Toastify({
       text: text,
@@ -22,6 +24,7 @@ const LoginForm = () => {
       className: Styles.toast,
       backgroundColor: "red",
     }).showToast();
+
   const toastCorrect = (text) =>
     Toastify({
       text: text,
@@ -31,7 +34,6 @@ const LoginForm = () => {
       backgroundColor: "#32CD32",
     }).showToast();
 
-  /* login with user and password */
   const handleLogin = async (userInfo) => {
     document.cookie = "token=;max-age=0";
     window.localStorage.removeItem("sessionData");
@@ -41,8 +43,6 @@ const LoginForm = () => {
         password: userInfo.password,
       })
       .then(function (res) {
-        console.log(res);
-
         if (res.data && !res.data.token) {
           toast(res.data.message);
         }
@@ -55,8 +55,6 @@ const LoginForm = () => {
             window.location.reload();
           }, 1000);
         }
-
-        console.log(document.cookie);
       })
       .catch(function (error) {
         toast(error.response.data.message);
@@ -200,14 +198,7 @@ const LoginForm = () => {
                     Olvido su contraseña?
                   </Link>
                 </div>
-                {/*
-                <div className={Styles.remember}>
-                  <input type="checkbox" className={Styles.checkbox} />
-                  <label className={Styles.label}>Recordarme.</label>
-                </div>
-                 */}
               </div>
-              {/* VALIDATIONS */}
               {!/^[a-zA-Z0-9_]+$/.test(
                 values.email || !values.phone || !values.username
               ) || !values.password ? (

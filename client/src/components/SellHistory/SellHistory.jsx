@@ -12,7 +12,6 @@ const SellHistory = () => {
   const [user, setUser] = useState("");
 
   useEffect(() => {
-    console.log(user?.id);
     (async () => {
       if (!user) {
         const data = await getUserData();
@@ -23,9 +22,7 @@ const SellHistory = () => {
     dispatch(getSellsHistory(user));
   }, [user, dispatch]);
 
-  const historial = useSelector((state) =>
-    state?.sellsHistory.filter((el) => el.pagado === true)
-  );
+  const historial = useSelector((state) => state.sellsHistory);
 
   var repetidos = {};
 

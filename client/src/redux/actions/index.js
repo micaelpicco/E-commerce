@@ -53,7 +53,6 @@ export const getProductDetail = (id) => {
     const profileData = await axios.get(
       `/user/getProfile/${detail.data.profileId}`
     );
-    console.log(profileData);
     dispatch({
       type: GET_PRODUCT_DETAIL,
       payload: { ...detail.data, storeName: profileData.data.storeName },

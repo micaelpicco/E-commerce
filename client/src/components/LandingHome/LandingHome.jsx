@@ -12,31 +12,14 @@ export default function LandingHome() {
         <h4 className={Styles.LandingSubTitle}>
           Compra o aumenta tus ventas de ropa
         </h4>
-        <div
-          className={
-            Styles.LandingButtons
-          } /*className="d-grid gap-2 d-md-flex justify-content-md-start"*/
-        >
+        <div className={Styles.LandingButtons}>
           <Link to="/home">
-            <button
-              className={
-                Styles.LandingButton
-              } /*className="btn btn-warning me-md-2 btn-lg"*/
-            >
-              Buscar productos
-            </button>
+            <button className={Styles.LandingButton}>Buscar productos</button>
           </Link>
           <Link to="/register">
-            <button
-              className={
-                Styles.LandingButton
-              } /*className="btn btn-warning me-md-2 btn-lg"*/
-            >
-              Crear una tienda
-            </button>
+            <button className={Styles.LandingButton}>Crear una tienda</button>
           </Link>
         </div>
-        {/* <LandingDetail /> */}
       </div>
       <Footer />
     </div>

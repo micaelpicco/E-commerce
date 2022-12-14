@@ -30,7 +30,7 @@ server.use((req, res, next) => {
   res.header(
     "Access-Control-Allow-Origin",
     `${process.env.FRONTEND || "http://localhost:3000"}`
-  ); // update to match the domain you will make the request from
+  );
   res.header("Access-Control-Allow-Credentials", "true");
   res.header(
     "Access-Control-Allow-Headers",
@@ -43,82 +43,9 @@ server.use((req, res, next) => {
   next();
 });
 
-/*server.use(
-  session({
-    secret: process.env.SECRET,
-    resave: true,
-    saveUninitialized: true,
-    cookie: {
-      sameSite: "none",
-      maxAge: 1000 * 60 * 60 * 24,
-    },
-  })
-);*/
-
 server.get("/", (req, res, next) => {
-  //console.log(req.session);
-  //console.log(req.sessionID);
   res.send("hello world");
 });
-
-//Ruta que dirige a la pestaña de mercadopago para pagar
-server.post("/generar/:id", (req, res, next) => {
-  const data = req.body;
-  const { id } = req.params;
-
-  const arreglo = [];
-  for (let i = 0; i < data.length; i++) {
-    arreglo.push({
-      id: data[i].variantID,
-      title: data[i].name,
-      unit_price: data[i].price,
-      quantity: 1,
-    });
-  }
-
-  let preference = {
-    items: arreglo,
-    back_urls: {
-      success: `${process.env.FRONTEND}/home`,
-      pending: `${process.env.FRONTEND}/home`,
-      failure: `${process.env.FRONTEND}/home`,
-    },
-    //Cuando el usuario aprieta el boton de comprar se acciona este link
-    notification_url: `https://77be-190-31-34-143.sa.ngrok.io/payment/notificar/${id}`,
-  };
-
-  //Enviamos al front la url donde tiene que redirigir al usuario cuando clickea comprar en el carrito
-  mercadopago.preferences
-    .create(preference)
-    .then(function (response) {
-      res.send(response.body.init_point);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-});
-
-//Ruta para redirigir el usuario luego de que la compra fue exitosa
-server.get("/success", (req, res, next) => {
-  res.send("TODO SALIO BIEN");
-});
-
-//Ruta para traerme la data que quiero cuando el usuario aprieta comprar
-// server.post("/notificar", async (req, res, next) => {
-//   const query = req.query;
-//   const topic = query.topic;
-
-//   switch (topic) {
-//     case "payment":
-//       const paymentId = query.id;
-//       const payment = await mercadopago.payment.findById(paymentId);
-//       console.log(payment.body.additional_info.items);
-//       res.send(payment);
-//       break;
-//     default:
-//       break;
-//   }
-// });
 
 //Token del usuario de prueba vendedor de mercadopago
 mercadopago.configure({
@@ -127,7 +54,6 @@ mercadopago.configure({
 });
 
 server.use(passport.initialize());
-//server.use(passport.session());
 
 server.use("/", routes);
 server.use(logger);

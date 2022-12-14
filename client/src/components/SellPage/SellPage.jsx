@@ -8,16 +8,30 @@ import Styles from "./SellPage.module.css";
 const SellPage = () => {
   const location = useLocation();
 
-  console.log(location.pathname)
-
   return (
     <div className={Styles.Sellpage}>
       <div className={Styles.SellpageLinks}>
-        <Link id={location.pathname === "/home/profile/sells" ? Styles.Selected : Styles.NotSelected} 
-          className={Styles.SellPageLink} to="">VENTAS
+        <Link
+          id={
+            location.pathname === "/home/profile/sells"
+              ? Styles.Selected
+              : Styles.NotSelected
+          }
+          className={Styles.SellPageLink}
+          to=""
+        >
+          VENTAS
         </Link>
-        <Link id={location.pathname === "/home/profile/sells/products" ? Styles.Selected : Styles.NotSelected}
-          className={Styles.SellPageLink} to="products">PRODUCTOS
+        <Link
+          id={
+            location.pathname === "/home/profile/sells/products"
+              ? Styles.Selected
+              : Styles.NotSelected
+          }
+          className={Styles.SellPageLink}
+          to="products"
+        >
+          PRODUCTOS
         </Link>
       </div>
       <div className={Styles.SellpageRoutes}>
