@@ -59,6 +59,6 @@ PostgreSQL
 
 Link: https://express-clothes.vercel.app/
 
-You can enter with the following moderator user and see the control that he has
+If you don't want to create a new user, you can enter with the following:
 - User: lmacchi
 - Password: 123456
